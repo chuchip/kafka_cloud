@@ -5,12 +5,26 @@
 Ejecutar commando:
 - curl -X POST http://localhost:8080/add?key=3 -d "Mensaje para topic1 ... 9:12A "  --header 'Content-Type: text/plain'
 
-## Comandos útiles en consola:
+##  Acceder a consola de kafka
+Una vez lanzado kafka en docker con: 
 
+> docker-compose up -d
+
+Entrar al primer servidor de docker, el cual se llamara `kafka_cloud-kafka2_docker-1` (puedes controlarlo ejecutando el comando "docker ps" ).
+
+> docker exec -it "kafka_cloud-kafka2_docker-1" bash
+
+Una vez dentro del servidor, cambiar al directorio "/opt/bitnami/kafka" que es donde se instala Kafka.
+
+#### Comandos utiles.
+
+##### Consumir  a topic
 > bin/kafka-console-consumer.sh --topic topicName1 --from-beginning --bootstrap-server localhost:9092
 
+##### Create a topic
 > bin/kafka-topics.sh --create --topic topicName1  --partitions 5 --replication-factor 3 --bootstrap-server localhost:9092
 
+##### List  availaible topics 
 > bin/kafka-topics.sh --list --bootstrap-server localhost:9092
 
 > bin/kafka-topics.sh --describe --topic topicName1 --bootstrap-server localhost:9092
